@@ -30,4 +30,13 @@ minetest.register_node("mydefaultlights:ceiling_light_"..color, {
 	},
 	on_place = minetest.rotate_node,
 })
+minetest.register_craft({
+		output = 'mydefaultlights:ceiling_light_"..color 20',
+		recipe = {
+			{'', item, ''},
+			{item, 'default:torcht', item},
+			{'', '', ''},		
+		},
+})
+
 end

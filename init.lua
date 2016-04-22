@@ -1,9 +1,9 @@
 local ceiling_lights = {   --color , Description , Image , Item
 	{ "white" , "White" , "default_snow" , "default:snowblock"},
-	{ "light_grey" , "Light Grey" , "default_steel_block" , "default:steelblock"},
-	{ "yellow" , "Yellow" ,  "default_gold_block" , "default:goldblock"},	
-	{ "orange" , "Orange" ,  "default_bronze_block" , "default:bronzeblock"},	
-	{ "blue" , "Blue" , "default_diamond_block" , "default:diamondblock"},	
+	{ "light_grey" , "Light Grey" , "default_steel_block" , "default:steel_ingot"},
+	{ "yellow" , "Yellow" ,  "default_gold_block" , "default:gold_ingot"},
+	{ "orange" , "Orange" ,  "default_bronze_block" , "default:bronze_ingot"},
+	{ "blue" , "Blue" , "default_diamond_block" , "default:diamond"},
 	{ "lava" , "Lava" , "default_lava" , "default:lava_source"},
 }
 
@@ -20,7 +20,7 @@ minetest.register_node("mydefaultlights:ceiling_light_"..color, {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	light_source = 14,
-	groups = {snappy = 1},
+	groups = {snappy = 1, oddly_breakable_by_hand = 1},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -30,6 +30,7 @@ minetest.register_node("mydefaultlights:ceiling_light_"..color, {
 	},
 	on_place = minetest.rotate_node,
 })
+
 minetest.register_craft({
 		output = 'mydefaultlights:ceiling_light_'..color..' 20',
 		recipe = {
@@ -47,4 +48,5 @@ minetest.register_craft({
 			{'bucket:bucket_lava', 'default:torch', 'bucket:bucket_lava'},
 			{'', '', ''},
 		},
+		replacements = {{"bucket:bucket_lava","bucket:bucket_empty 3"}},
 })
